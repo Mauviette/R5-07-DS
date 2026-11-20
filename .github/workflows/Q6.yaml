@@ -1,0 +1,38 @@
+name: Q6
+run-name: ${{ github.actor }} crée Q6_archive_date.txt et Q6_différences.txt 🚀
+on: [push]
+permissions:
+  contents: write
+jobs:
+  Archivage-Java-Q6:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Création de Q6_archive_date.txt et Q6_différences.txt
+        run: |
+        
+          PRECEDENT=$(ls Q6_archive_*.txt 2>/dev/null | sort -t- -k3,3 -k2,2 -k1,1 -k4,4 | tail -1)
+          FICHIER="Q6_archive_$(TZ=Europe/Paris date +%d-%m-%Y-%H%M%S).txt"
+          echo "Jules Bouquet" > $FICHIER
+          echo "Contenu de Q6.java:" >> $FICHIER
+          cat Q6.java >> $FICHIER
+          echo "Nombre de caractères de Q6.java : $(wc -m < Q6.java)" >> $FICHIER
+          echo "Nombre de lignes de Q6.java : $(wc -l < Q6.java)" >> $FICHIER
+          
+          if [ -z "$PRECEDENT" ]; then
+            echo "Pas d'archive précédente" > Q6_différences.txt
+          else
+            echo "Différences entre $PRECEDENT et $FICHIER :" > Q6_différences.txt
+            diff "$PRECEDENT" "$FICHIER" >> Q6_différences.txt || true
+          fi
+          
+      # push
+      - name: Commit et push
+        run: |
+          git config --global user.name julesbqt
+          git config --global user.email jules.bouquet@etu.univ-lehavre.fr
+          git add Q6_archive_*.txt Q6_différences.txt
+          git commit -m "Création de Q6_archive_date.txt et Q6_différences.txt"
+          git pull --rebase
+          git push

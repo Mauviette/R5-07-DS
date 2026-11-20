@@ -1,0 +1,6 @@
+Jules Bouquet
+executé le : 20/11/2026 15:39:36
+Contenu de XYZ.txt : 
+ABC
+
+Taille XYZ.txt : 4 octets

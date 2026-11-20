@@ -1,0 +1,26 @@
+name: Q5
+run-name: ${{ github.actor }} crée Q5_archive_date.txt
+on: [push]
+permissions:
+  contents: write
+jobs:
+  Archivage-Java-Q5:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Création de Q5_archive_date.txt
+        run: |
+          FICHIER="Q5_archive_$(TZ=Europe/Paris date +%d-%m-%Y).txt"
+          echo "Jules Bouquet" > $FICHIER
+          echo "Contenu de Q5.java:" >> $FICHIER
+          cat Q5.java >> $FICHIER
+      # push
+      - name: Commit et push
+        run: |
+          git config --global user.name julesbqt
+          git config --global user.email jules.bouquet@etu.univ-lehavre.fr
+          git add Q5_archive_*.txt
+          git commit -m "Création de Q5_archive_date.txt"
+          git pull --rebase
+          git push

@@ -1,1 +1,10 @@
-Différences entre Q6_archive_20-11-2026-161926.txt et Q6_archive_20-11-2026-162032.txt :
+Différences entre Q6_archive_20-11-2026-162032.txt et Q6_archive_20-11-2026-162244.txt :
+17a18,19
+> 
+>             // Blablablablaaaaaa
+22,23c24,25
+< Nombre de caractères de Q6.java : 468
+< Nombre de lignes de Q6.java : 19
+---
+> Nombre de caractères de Q6.java : 502
+> Nombre de lignes de Q6.java : 21

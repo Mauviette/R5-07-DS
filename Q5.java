@@ -6,7 +6,7 @@ public class Q5 {
                   
             for (int ligne = 1; ligne <= n; ligne++) {
               
-                System.out.print(i);
+                System.out.print(X);
                 if (i > 1) {
                   
                     System.out.print(" ");
